@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <title>Guess my number</title>
+</head>
+
+<body>
+    <section id="base" class="container-fluid">
+        <div class="col-12 text-center">
+            <div id="startGame">
+                <h1 class="pt-3 mb-1">Guess the Number</h1>
+                <div>
+                    <img src="assets/img/guessthenumber.gif" id="presentationImage" alt="Devine le nombre" />
+                </div>
+                <!-- Bouton pour commencer le jeu -->
+                <button class="btn btn-outline-primary mt-2 mt-sm-3" id="play">Jouer</button>
+                <div>
+                    <!-- Bouton pour afficher les règles du jeu -->
+                    <button type="button" class="btn btn-outline-primary mt-2 mt-sm-3" data-bs-toggle="modal"
+                        data-bs-target="#rules">
+                        Règles du jeu
+                    </button>
+
+                    <!-- Modal pour les règles du jeu -->
+                    <div class="modal fade" id="rules" tabindex="-1" aria-labelledby="rules" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="modal-title mx-auto" id="rules">Règles du jeu</h3>
+                                </div>
+                                <div class="modal-body text-start">
+                                    <p>Le but du jeu est de trouver le nombre de l'ordinateur, qui est compris :</p>
+                                    <ul>
+                                        <li>Entre 1 et 10 en mode facile</li>
+                                        <li>Entre 1 et 100 en mode moyen</li>
+                                        <li>Entre 1 et 1 000 en mode difficile</li>
+                                    </ul>
+                                    <p>Entrez un nombre et cliquez sur le bouton "Vérifier"</p>
+                                    <ul>
+                                        <li>Si votre nombre est inférieur au nombre de l'ordinateur : l'ordinateur vous
+                                            indiquera : "C'est plus".</li>
+                                        <li>Si votre nombre est supérieur au nombre de l'ordinateur : l'ordinateur vous
+                                            indiquera : "C'est moins".</li>
+                                        <li>Si votre nombre est égal au nombre de l'ordinateur : l'ordinateur vous
+                                            indiquera : "Vous avez gagné".</li>
+                                    </ul>
+                                    <p class="text-center">Bon jeu !</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-primary mx-auto"
+                                        data-bs-dismiss="modal">Fermer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tableau qui récapitule le nombre de parties jouées + les meilleurs scores -->
+                <div>
+                    <h2 class="pt-1 mt-1 mt-sm-4">Statistiques</h2>
+                </div>
+                <div class="text-center">
+                    <table class="col-sm-5 col-12 mx-auto">
+                        <thead>
+                            <tr>
+                                <th>Difficulté</th>
+                                <th>Nombre de parties</th>
+                                <th>Meilleur score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Facile</td>
+                                <td id="tdnumberOfEasyParties"></td>
+                                <td id="tdEasyBestScore"></td>
+                            </tr>
+                            <tr>
+                                <td>Moyen</td>
+                                <td id="tdnumberOfMediumParties"></td>
+                                <td id="tdMediumBestScore"></td>
+                            </tr>
+                            <tr>
+                                <td>Difficile</td>
+                                <td id="tdnumberOfHardParties"></td>
+                                <td id="tdHardBestScore"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--Choix de la difficulté du jeu-->
+            <div id="levelChoice">
+                <h2 class="pt-3">Choisissez votre difficulté</h2>
+                <div>
+                    <img src="assets/img/choice.gif" id="choiceDifficultyImage" alt="Choix de la difficulté" />
+                </div>
+                <div>
+                    <button class="btn btn-outline-primary col-8 col-sm-2 mt-sm-4 mt-1 p-2"
+                        id="easyButton">Facile</button>
+                    <p class="mt-1 descriptionEasyButton">Nombre allant de 1 à 10</p>
+                </div>
+                <div>
+                    <button class="btn btn-outline-primary col-8 col-sm-2 p-2" id="mediumButton">Moyen</button>
+                    <p class="mt-1 descriptionMediumButton">Nombre allant de 1 à 100</p>
+                </div>
+                <div>
+                    <button class="btn btn-outline-primary col-8 col-sm-2 p-2" id="hardButton">Difficile</button>
+                    <p class="mt-1 descriptionHardButton">Nombre allant de 1 à 1 000</p>
+                </div>
+            </div>
+            <!--Fenêtre du jeu-->
+            <div id="gamePlay">
+                <h2 class="pt-3 mb-2">À vous de jouer</h2>
+                <div>
+                    <img src="assets/img/guessthenumber.gif" id="indicationImage" alt="Indication image" />
+                </div>
+                <div id="numberEnter">
+                    <div>
+                        <label for="number" class="mt-2 mb-2">Entrez un nombre</label>
+                    </div>
+                    <div id="informationGame"></div>
+                    <div class="col-6 mb-4 mx-auto">
+                        <input type="number" id="number" name="number" min="0" />
+                    </div>
+                    <!--Bouton permettant de comparer le nombre du joueur avec celui de l'ordinateur-->
+                    <div class="col-12 mt-4">
+                        <button class="btn btn-outline-primary col-2" id="check">Vérifier</button>
+                    </div>
+                </div>
+                <!--Bouton permettant de refaire une partie en renvoyant le joueur vers l'écran d'accueil-->
+                <div class="col-12 mt-4">
+                    <button class="btn btn-outline-primary mx-auto col-2" id="restart">Rejouer</button>
+                </div>
+            </div>
+            <!--Modal qui s'ouvre si victoire du joueur-->
+            <div id="winModal" class="modal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header ">
+                            <h3 class="modal-title mx-auto">Félicitations !</h3>
+                        </div>
+                        <div class="modal-body">
+                            <img src="assets/img/win.gif" id="winImage" alt="Image victoire" />
+                        </div>
+                        <div id="guessedNumber"></div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-primary mx-auto" data-bs-dismiss="modal"
+                                id="closeWinModal">Fermer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Jeu créé par Maximilien Gout -->
+    <!-- LinkedIn : https://www.linkedin.com/in/maximiliengout/ -->
+    <!--Script-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>

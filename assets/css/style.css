@@ -1,0 +1,55 @@
+/* Police */
+h1, h2, h3, p, label {
+    font-family: 'Lobster';
+}
+h1 {
+    font-size: 2.2rem;
+}
+
+h2, label {
+    font-size: 1.5rem;    
+}
+
+/* Background du jeu */
+#base {
+    height: 100vh;
+    background-color: rgb(251, 187, 87);
+}
+
+/* Masque les différents écrans du jeu ainsi que la modale victoire et le bouton recommencer */
+#levelChoice, #gamePlay, #winModal, #restart {
+    display: none;
+}
+
+/* Masque les différents écrans du jeu ainsi que la modale victoire et le bouton recommencer */
+.descriptionEasyButton, .descriptionMediumButton, .descriptionHardButton {
+    visibility: hidden;
+}
+
+/* Agrandis tous les boutons */
+.btn:hover {
+    transform: scale(1.2);
+}
+
+/* 
+* Affiche les infos sous les différents boutons
+*/
+
+/* Bouton facile */
+#easyButton:hover + .descriptionEasyButton {
+    visibility: visible;
+}
+/* Bouton moyen */
+#mediumButton:hover + .descriptionMediumButton {
+    visibility: visible;
+}
+/* Bouton difficile */
+#hardButton:hover + .descriptionHardButton {
+    visibility: visible;
+}
+
+/* Permet de mettre en forme le numéro mystère */
+.result {
+    font-size: 2rem;
+    color: red;
+}
